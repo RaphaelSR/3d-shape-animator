@@ -40,8 +40,8 @@ export function useKeyboardShortcuts() {
         return;
       }
 
-      // Number keys 1-6: Select geometry
-      if (key >= '1' && key <= '6') {
+      // Number keys 1-9: Select geometry (supports more geometries now)
+      if (key >= '1' && key <= '9') {
         event.preventDefault();
         const geometryIndex = parseInt(key) - 1;
         if (geometryIndex < GEOMETRY_CONFIGS.length) {

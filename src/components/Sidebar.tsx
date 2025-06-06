@@ -2,22 +2,25 @@ import { ScrollArea, Stack, Divider, ActionIcon, Group, Text } from '@mantine/co
 import { IconSun, IconMoon, IconHelp } from '@tabler/icons-react';
 import { useState } from 'react';
 import { useAppStore } from '@/hooks/useAppStore';
+import { useTranslations } from '@/hooks/useTranslations';
 import { GeometrySelector } from './GeometrySelector';
 import { ColorSelector } from './ColorSelector';
 import { MotionControls } from './MotionControls';
 import { ExportControls } from './ExportControls';
 import { ControlsHelpModal } from './ControlsHelpModal';
+import { LanguageSelector } from './LanguageSelector';
 import { Footer } from './Footer';
 
 export function Sidebar() {
   const { theme, toggleTheme } = useAppStore();
+  const t = useTranslations();
   const [helpOpened, setHelpOpened] = useState(false);
 
   return (
     <Stack h="100vh" gap={0}>
       <Group justify="space-between" p="md" style={{ borderBottom: '1px solid var(--mantine-color-gray-3)' }}>
         <Text size="lg" fw={700}>
-          Geometry Motion Studio
+          {t.app.title}
         </Text>
         <Group gap="xs">
           <ActionIcon
@@ -41,6 +44,8 @@ export function Sidebar() {
 
       <ScrollArea flex={1} p="md">
         <Stack gap="xl">
+          <LanguageSelector />
+          <Divider />
           <GeometrySelector />
           <Divider />
           <ColorSelector />

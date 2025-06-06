@@ -1,4 +1,5 @@
 import { Modal, Stack, Text, Group, Kbd, List, Button } from '@mantine/core';
+import { useTranslations } from '@/hooks/useTranslations';
 
 interface ControlsHelpModalProps {
   opened: boolean;
@@ -6,11 +7,13 @@ interface ControlsHelpModalProps {
 }
 
 export function ControlsHelpModal({ opened, onClose }: ControlsHelpModalProps) {
+  const t = useTranslations();
+  
   return (
     <Modal
       opened={opened}
       onClose={onClose}
-      title="Controls & Instructions"
+      title={t.help.title}
       size="md"
       centered
     >
@@ -123,7 +126,7 @@ export function ControlsHelpModal({ opened, onClose }: ControlsHelpModalProps) {
         </Stack>
 
         <Button onClick={onClose} fullWidth>
-          Entendi!
+          OK
         </Button>
       </Stack>
     </Modal>

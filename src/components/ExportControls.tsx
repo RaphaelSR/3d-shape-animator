@@ -1,12 +1,14 @@
 import { Stack, Text, Select, Button } from '@mantine/core';
 import { IconDownload } from '@tabler/icons-react';
 import { useState } from 'react';
+import { useTranslations } from '@/hooks/useTranslations';
 import { EXPORT_PRESETS, type ExportQuality } from '@/utils/types';
 import { exportAnimation } from '@/utils/exportUtils';
 
 export function ExportControls() {
   const [selectedQuality, setSelectedQuality] = useState<ExportQuality>('medium');
   const [isExporting, setIsExporting] = useState(false);
+  const t = useTranslations();
 
   const handleExport = async () => {
     setIsExporting(true);
@@ -21,20 +23,20 @@ export function ExportControls() {
   };
 
   const qualityOptions = [
-    { value: 'high', label: 'Alta (WebM 60fps, 1080p)' },
-    { value: 'medium', label: 'Média (WebM 30fps, 720p)' },
-    { value: 'low', label: 'Baixa (GIF 15fps, 480p)' },
+    { value: 'high', label: t.export.quality + ' - Alta (WebM 60fps, 1080p)' },
+    { value: 'medium', label: t.export.quality + ' - Média (WebM 30fps, 720p)' },
+    { value: 'low', label: t.export.quality + ' - Baixa (GIF 15fps, 480p)' },
   ];
 
   return (
     <Stack gap="md">
       <Text size="sm" fw={600}>
-        Export Animation
+        {t.export.title}
       </Text>
       
       <Stack gap="sm">
         <Select
-          label="Quality Preset"
+          label={t.export.quality}
           value={selectedQuality}
           onChange={(value) => setSelectedQuality(value as ExportQuality)}
           data={qualityOptions}
@@ -49,7 +51,7 @@ export function ExportControls() {
           size="sm"
           color="green"
         >
-          {isExporting ? 'Exporting...' : 'Export Animation'}
+          {isExporting ? t.export.exporting : t.export.exportVideo}
         </Button>
         
         <Text size="xs" c="dimmed" ta="center">

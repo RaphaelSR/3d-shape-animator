@@ -1,6 +1,7 @@
 import { Stack, Text, Slider, Group, Button } from '@mantine/core';
 import { IconPlayerPlay, IconPlayerPause, IconRefresh } from '@tabler/icons-react';
 import { useAppStore } from '@/hooks/useAppStore';
+import { useTranslations } from '@/hooks/useTranslations';
 
 export function MotionControls() {
   const { 
@@ -10,6 +11,7 @@ export function MotionControls() {
     toggleAnimation, 
     resetControls 
   } = useAppStore();
+  const t = useTranslations();
 
   const handleControlChange = (key: keyof typeof motionControls) => (value: number) => {
     setMotionControls({ [key]: value });
@@ -21,7 +23,7 @@ export function MotionControls() {
     <Stack gap="md">
       <Group justify="space-between" align="center">
         <Text size="sm" fw={600}>
-          Motion Controls
+          {t.motion.title}
         </Text>
         <Group gap="xs">
           <Button
@@ -47,7 +49,7 @@ export function MotionControls() {
       <Stack gap="lg">
         <Stack gap="xs">
           <Group justify="space-between">
-            <Text size="xs" c="dimmed">Spin Speed</Text>
+            <Text size="xs" c="dimmed">{t.motion.rotationSpeed}</Text>
             <Text size="xs" c="dimmed">{motionControls.spinSpeed.toFixed(1)}</Text>
           </Group>
           <Slider
@@ -63,7 +65,7 @@ export function MotionControls() {
 
         <Stack gap="xs">
           <Group justify="space-between">
-            <Text size="xs" c="dimmed">Tilt Speed</Text>
+            <Text size="xs" c="dimmed">{t.motion.tiltSpeed}</Text>
             <Text size="xs" c="dimmed">{motionControls.tiltSpeed.toFixed(1)}</Text>
           </Group>
           <Slider
@@ -79,7 +81,7 @@ export function MotionControls() {
 
         <Stack gap="xs">
           <Group justify="space-between">
-            <Text size="xs" c="dimmed">Bounce Amplitude</Text>
+            <Text size="xs" c="dimmed">{t.motion.bounceAmplitude}</Text>
             <Text size="xs" c="dimmed">{motionControls.bounceAmplitude.toFixed(1)}</Text>
           </Group>
           <Slider
@@ -95,7 +97,7 @@ export function MotionControls() {
 
         <Stack gap="xs">
           <Group justify="space-between">
-            <Text size="xs" c="dimmed">Orbit Radius</Text>
+            <Text size="xs" c="dimmed">{t.motion.orbitRadius}</Text>
             <Text size="xs" c="dimmed">{motionControls.orbitRadius.toFixed(1)}</Text>
           </Group>
           <Slider
@@ -111,7 +113,7 @@ export function MotionControls() {
 
         <Stack gap="xs">
           <Group justify="space-between">
-            <Text size="xs" c="dimmed">Zoom Level</Text>
+            <Text size="xs" c="dimmed">{t.motion.scale}</Text>
             <Text size="xs" c="dimmed">{motionControls.zoom.toFixed(1)}</Text>
           </Group>
           <Slider

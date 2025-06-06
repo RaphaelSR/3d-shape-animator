@@ -1,7 +1,10 @@
 import { Group, Text, Anchor } from '@mantine/core';
 import { IconBrandGithub, IconHeart } from '@tabler/icons-react';
+import { useTranslations } from '@/hooks/useTranslations';
 
 export function Footer() {
+  const t = useTranslations();
+  
   return (
     <Group 
       justify="center" 
@@ -13,11 +16,11 @@ export function Footer() {
       }}
     >
       <Text size="xs" c="dimmed">
-        Feito com
+        {t.footer.madeWith}
       </Text>
       <IconHeart size={12} color="red" />
       <Text size="xs" c="dimmed">
-        por
+        {t.footer.by}
       </Text>
       <Anchor
         href="https://github.com/RaphaelSR"
@@ -36,7 +39,7 @@ export function Footer() {
         target="_blank"
         size="xs"
       >
-        Código Aberto
+        {t.footer.openSource}
       </Anchor>
     </Group>
   );

@@ -132,6 +132,79 @@ export function AnimatedGeometry({
           </mesh>
         );
 
+      case 'octahedron':
+        return (
+          <mesh {...props}>
+            <octahedronGeometry args={[1.5]} />
+            <meshStandardMaterial
+              color={primaryColor.hex}
+              metalness={0.2}
+              roughness={0.3}
+            />
+          </mesh>
+        );
+
+      case 'dodecahedron':
+        return (
+          <mesh {...props}>
+            <dodecahedronGeometry args={[1.2]} />
+            <meshStandardMaterial
+              color={primaryColor.hex}
+              metalness={0.2}
+              roughness={0.3}
+            />
+          </mesh>
+        );
+
+      case 'icosahedron':
+        return (
+          <mesh {...props}>
+            <icosahedronGeometry args={[1.3]} />
+            <meshStandardMaterial
+              color={primaryColor.hex}
+              metalness={0.2}
+              roughness={0.3}
+            />
+          </mesh>
+        );
+
+      case 'tetrahedron':
+        return (
+          <mesh {...props}>
+            <tetrahedronGeometry args={[1.5]} />
+            <meshStandardMaterial
+              color={primaryColor.hex}
+              metalness={0.2}
+              roughness={0.3}
+            />
+          </mesh>
+        );
+
+      case 'capsule':
+        return (
+          <mesh {...props}>
+            <capsuleGeometry args={[0.8, 2, 4, 8]} />
+            <meshStandardMaterial
+              color={primaryColor.hex}
+              metalness={0.2}
+              roughness={0.3}
+            />
+          </mesh>
+        );
+
+      case 'ring':
+        return (
+          <mesh {...props}>
+            <ringGeometry args={[0.8, 1.8, 32]} />
+            <meshStandardMaterial
+              color={primaryColor.hex}
+              metalness={0.2}
+              roughness={0.3}
+              side={2} // DoubleSide
+            />
+          </mesh>
+        );
+
       default:
         return null;
     }

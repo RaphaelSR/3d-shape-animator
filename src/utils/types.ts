@@ -1,4 +1,16 @@
-export type GeometryType = 'cube' | 'sphere' | 'pyramid' | 'cylinder' | 'cone' | 'torus';
+export type GeometryType = 
+  | 'cube' 
+  | 'sphere' 
+  | 'pyramid' 
+  | 'cylinder' 
+  | 'cone' 
+  | 'torus'
+  | 'octahedron'
+  | 'dodecahedron'
+  | 'icosahedron'
+  | 'tetrahedron'
+  | 'capsule'
+  | 'ring';
 
 export type Theme = 'light' | 'dark';
 
@@ -46,6 +58,12 @@ export const GEOMETRY_CONFIGS: GeometryConfig[] = [
   { type: 'cylinder', label: 'Cylinder', icon: '🟫' },
   { type: 'cone', label: 'Cone', icon: '🔶' },
   { type: 'torus', label: 'Torus', icon: '🟤' },
+  { type: 'octahedron', label: 'Octahedron', icon: '💎' },
+  { type: 'dodecahedron', label: 'Dodecahedron', icon: '🎲' },
+  { type: 'icosahedron', label: 'Icosahedron', icon: '⚽' },
+  { type: 'tetrahedron', label: 'Tetrahedron', icon: '🔻' },
+  { type: 'capsule', label: 'Capsule', icon: '💊' },
+  { type: 'ring', label: 'Ring', icon: '💍' },
 ];
 
 export const DEFAULT_COLORS: Color[] = [
