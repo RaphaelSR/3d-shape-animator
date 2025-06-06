@@ -73,7 +73,7 @@ export function Sidebar() {
         onClose={() => setHelpOpened(false)}
       />
 
-      {!isMobile && <Footer />}
+      <Footer />
     </Stack>
   );
 }
