@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
-import { Mesh, Color as ThreeColor } from 'three';
+import { Mesh, Color as ThreeColor, DoubleSide } from 'three';
 import type { GeometryType, MotionControls, Color } from '@/utils/types';
 
 interface AnimatedGeometryProps {
@@ -200,7 +200,7 @@ export function AnimatedGeometry({
               color={primaryColor.hex}
               metalness={0.2}
               roughness={0.3}
-              side={2} // DoubleSide
+              side={DoubleSide} // eslint-disable-line react/no-unknown-property
             />
           </mesh>
         );
