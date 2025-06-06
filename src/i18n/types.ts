@@ -51,6 +51,49 @@ export interface Translations {
   help: {
     title: string;
     keyboardShortcuts: string;
+    mouse: {
+      title: string;
+      rotate: string;
+      zoom: string;
+      pan: string;
+      clickDrag: string;
+      mouseWheel: string;
+      shiftClickDrag: string;
+    };
+    colors: {
+      title: string;
+      primaryColor: string;
+      secondaryColor: string;
+      swatches: string;
+    };
+    motion: {
+      title: string;
+      spinSpeed: string;
+      tiltSpeed: string;
+      bounce: string;
+      orbit: string;
+      zoom: string;
+    };
+    export: {
+      title: string;
+      high: string;
+      medium: string;
+      low: string;
+    };
+    keyboard: {
+      title: string;
+      space: string;
+      theme: string;
+      geometry: string;
+      rotationSpeed: string;
+      tilt: string;
+      zoomKeys: string;
+      bounceToggle: string;
+      orbitToggle: string;
+      spaceKey: string;
+      arrowUpDown: string;
+      arrowLeftRight: string;
+    };
     controls: {
       geometry: string;
       colors: string;

@@ -19,107 +19,107 @@ export function ControlsHelpModal({ opened, onClose }: ControlsHelpModalProps) {
     >
       <Stack gap="lg">
         <Stack gap="sm">
-          <Text size="sm" fw={600}>🖱️ Mouse Controls</Text>
+          <Text size="sm" fw={600}>🖱️ {t.help.mouse.title}</Text>
           <List size="sm" spacing="xs">
             <List.Item>
               <Group gap="xs">
-                <Text>Rotate:</Text>
-                <Kbd>Click + Drag</Kbd>
+                <Text>{t.help.mouse.rotate}</Text>
+                <Kbd>{t.help.mouse.clickDrag}</Kbd>
               </Group>
             </List.Item>
             <List.Item>
               <Group gap="xs">
-                <Text>Zoom:</Text>
-                <Kbd>Mouse Wheel</Kbd>
+                <Text>{t.help.mouse.zoom}</Text>
+                <Kbd>{t.help.mouse.mouseWheel}</Kbd>
               </Group>
             </List.Item>
             <List.Item>
               <Group gap="xs">
-                <Text>Pan:</Text>
-                <Kbd>Shift + Click + Drag</Kbd>
+                <Text>{t.help.mouse.pan}</Text>
+                <Kbd>{t.help.mouse.shiftClickDrag}</Kbd>
               </Group>
             </List.Item>
           </List>
         </Stack>
 
         <Stack gap="sm">
-          <Text size="sm" fw={600}>🎨 Color Controls</Text>
+          <Text size="sm" fw={600}>🎨 {t.help.colors.title}</Text>
           <List size="sm" spacing="xs">
-            <List.Item>Primary Color: Main geometry color</List.Item>
-            <List.Item>Secondary Color: Creates gradient effect</List.Item>
-            <List.Item>Click swatches for presets or use custom picker</List.Item>
+            <List.Item>{t.help.colors.primaryColor}</List.Item>
+            <List.Item>{t.help.colors.secondaryColor}</List.Item>
+            <List.Item>{t.help.colors.swatches}</List.Item>
           </List>
         </Stack>
 
         <Stack gap="sm">
-          <Text size="sm" fw={600}>🎮 Motion Controls</Text>
+          <Text size="sm" fw={600}>🎮 {t.help.motion.title}</Text>
           <List size="sm" spacing="xs">
-            <List.Item>Spin Speed: Rotation around Y-axis (0-3x)</List.Item>
-            <List.Item>Tilt Speed: Rotation around X-axis (0-2x)</List.Item>
-            <List.Item>Bounce: Vertical movement amplitude</List.Item>
-            <List.Item>Orbit: Circular movement radius</List.Item>
-            <List.Item>Zoom: Camera distance (2x-15x)</List.Item>
+            <List.Item>{t.help.motion.spinSpeed}</List.Item>
+            <List.Item>{t.help.motion.tiltSpeed}</List.Item>
+            <List.Item>{t.help.motion.bounce}</List.Item>
+            <List.Item>{t.help.motion.orbit}</List.Item>
+            <List.Item>{t.help.motion.zoom}</List.Item>
           </List>
         </Stack>
 
         <Stack gap="sm">
-          <Text size="sm" fw={600}>📥 Opções de Export</Text>
+          <Text size="sm" fw={600}>📥 {t.help.export.title}</Text>
           <List size="sm" spacing="xs">
-            <List.Item>Alta: WebM 60fps, 1080p</List.Item>
-            <List.Item>Média: WebM 30fps, 720p</List.Item>
-            <List.Item>Baixa: GIF 15fps, 480p</List.Item>
+            <List.Item>{t.help.export.high}</List.Item>
+            <List.Item>{t.help.export.medium}</List.Item>
+            <List.Item>{t.help.export.low}</List.Item>
           </List>
         </Stack>
 
         <Stack gap="sm">
-          <Text size="sm" fw={600}>⌨️ Atalhos de Teclado</Text>
+          <Text size="sm" fw={600}>⌨️ {t.help.keyboard.title}</Text>
           <List size="sm" spacing="xs">
             <List.Item>
               <Group gap="xs">
-                <Kbd>Espaço</Kbd>
-                <Text>Play/Pausar animação</Text>
+                <Kbd>{t.help.keyboard.spaceKey}</Kbd>
+                <Text>{t.help.keyboard.space}</Text>
               </Group>
             </List.Item>
             <List.Item>
               <Group gap="xs">
                 <Kbd>T</Kbd>
-                <Text>Alternar tema</Text>
+                <Text>{t.help.keyboard.theme}</Text>
               </Group>
             </List.Item>
             <List.Item>
               <Group gap="xs">
                 <Kbd>1-9, 0, -, =</Kbd>
-                <Text>Selecionar geometria (1-12)</Text>
+                <Text>{t.help.keyboard.geometry}</Text>
               </Group>
             </List.Item>
             <List.Item>
               <Group gap="xs">
-                <Kbd>↑↓</Kbd>
-                <Text>Ajustar velocidade de rotação</Text>
+                <Kbd>{t.help.keyboard.arrowUpDown}</Kbd>
+                <Text>{t.help.keyboard.rotationSpeed}</Text>
               </Group>
             </List.Item>
             <List.Item>
               <Group gap="xs">
-                <Kbd>←→</Kbd>
-                <Text>Ajustar inclinação</Text>
+                <Kbd>{t.help.keyboard.arrowLeftRight}</Kbd>
+                <Text>{t.help.keyboard.tilt}</Text>
               </Group>
             </List.Item>
             <List.Item>
               <Group gap="xs">
                 <Kbd>Z/X</Kbd>
-                <Text>Ajustar zoom</Text>
+                <Text>{t.help.keyboard.zoomKeys}</Text>
               </Group>
             </List.Item>
             <List.Item>
               <Group gap="xs">
                 <Kbd>B</Kbd>
-                <Text>Ativar/desativar bounce</Text>
+                <Text>{t.help.keyboard.bounceToggle}</Text>
               </Group>
             </List.Item>
             <List.Item>
               <Group gap="xs">
                 <Kbd>O</Kbd>
-                <Text>Ativar/desativar órbita</Text>
+                <Text>{t.help.keyboard.orbitToggle}</Text>
               </Group>
             </List.Item>
           </List>
