@@ -1,5 +1,4 @@
 import { Modal, Stack, Text, Group, Kbd, List, Button } from '@mantine/core';
-import { IconHelp } from '@tabler/icons-react';
 
 interface ControlsHelpModalProps {
   opened: boolean;

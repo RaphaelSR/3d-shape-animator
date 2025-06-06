@@ -1,4 +1,4 @@
-import { Stack, Button, Text, Group } from '@mantine/core';
+import { Stack, Button, Text } from '@mantine/core';
 import { useAppStore } from '@/hooks/useAppStore';
 import { GEOMETRY_CONFIGS } from '@/utils/types';
 

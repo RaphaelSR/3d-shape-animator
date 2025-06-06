@@ -1,4 +1,4 @@
-import { Stack, Text, Select, Button, Group } from '@mantine/core';
+import { Stack, Text, Select, Button } from '@mantine/core';
 import { IconDownload } from '@tabler/icons-react';
 import { useState } from 'react';
 import { EXPORT_PRESETS, type ExportQuality } from '@/utils/types';

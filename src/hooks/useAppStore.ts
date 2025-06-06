@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import { devtools } from 'zustand/middleware';
-import type { AppState, GeometryType, Color, MotionControls, Theme } from '@/utils/types';
+import type { AppState, GeometryType, Color, MotionControls } from '@/utils/types';
 
 interface AppStore extends AppState {
   setGeometry: (geometry: GeometryType) => void;
