@@ -54,7 +54,7 @@ export const ptBR: Translations = {
     title: 'Ajuda',
     keyboardShortcuts: 'Atalhos do Teclado',
     controls: {
-      geometry: 'Mudar geometria: 1-9',
+      geometry: 'Mudar geometria: 1-9, 0, -, =',
       colors: 'Cores aleatórias: C',
       motion: 'Reset posição: R',
       camera: 'Reset câmera: ESPAÇO',

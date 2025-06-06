@@ -1,33 +1,25 @@
-import { AppShell } from '@mantine/core';
-import { Sidebar } from '@/components/Sidebar';
+import { useState } from 'react';
 import { Scene } from '@/components/Scene';
+import { ResponsiveLayout } from '@/components/ResponsiveLayout';
+import { ControlsHelpModal } from '@/components/ControlsHelpModal';
 import { useKeyboardShortcuts } from '@/hooks/useKeyboardShortcuts';
 
 export function HomePage() {
   // Enable keyboard shortcuts
   useKeyboardShortcuts();
+  
+  const [helpOpened, setHelpOpened] = useState(false);
 
   return (
-    <AppShell
-      navbar={{
-        width: 350,
-        breakpoint: 'md',
-      }}
-      padding={0}
-      styles={{
-        main: {
-          height: '100vh',
-          overflow: 'hidden',
-        },
-      }}
-    >
-      <AppShell.Navbar>
-        <Sidebar />
-      </AppShell.Navbar>
-
-      <AppShell.Main>
+    <>
+      <ResponsiveLayout onHelpOpen={() => setHelpOpened(true)}>
         <Scene />
-      </AppShell.Main>
-    </AppShell>
+      </ResponsiveLayout>
+      
+      <ControlsHelpModal
+        opened={helpOpened}
+        onClose={() => setHelpOpened(false)}
+      />
+    </>
   );
 }

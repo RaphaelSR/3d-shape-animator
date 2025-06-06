@@ -40,12 +40,39 @@ export function useKeyboardShortcuts() {
         return;
       }
 
-      // Number keys 1-9: Select geometry (supports more geometries now)
+      // Number keys 1-9, 0, -, =: Select geometry (supports all 12 geometries)
       if (key >= '1' && key <= '9') {
         event.preventDefault();
         const geometryIndex = parseInt(key) - 1;
         if (geometryIndex < GEOMETRY_CONFIGS.length) {
           setGeometry(GEOMETRY_CONFIGS[geometryIndex].type);
+        }
+        return;
+      }
+
+      // Key 0: Select 10th geometry
+      if (key === '0') {
+        event.preventDefault();
+        if (GEOMETRY_CONFIGS.length >= 10) {
+          setGeometry(GEOMETRY_CONFIGS[9].type);
+        }
+        return;
+      }
+
+      // Key -: Select 11th geometry
+      if (key === '-') {
+        event.preventDefault();
+        if (GEOMETRY_CONFIGS.length >= 11) {
+          setGeometry(GEOMETRY_CONFIGS[10].type);
+        }
+        return;
+      }
+
+      // Key =: Select 12th geometry
+      if (key === '=') {
+        event.preventDefault();
+        if (GEOMETRY_CONFIGS.length >= 12) {
+          setGeometry(GEOMETRY_CONFIGS[11].type);
         }
         return;
       }

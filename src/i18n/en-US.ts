@@ -54,7 +54,7 @@ export const enUS: Translations = {
     title: 'Help',
     keyboardShortcuts: 'Keyboard Shortcuts',
     controls: {
-      geometry: 'Change geometry: 1-9',
+      geometry: 'Change geometry: 1-9, 0, -, =',
       colors: 'Random colors: C',
       motion: 'Reset position: R',
       camera: 'Reset camera: SPACE',

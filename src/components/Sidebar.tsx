@@ -1,8 +1,9 @@
 import { ScrollArea, Stack, Divider, ActionIcon, Group, Text } from '@mantine/core';
-import { IconSun, IconMoon, IconHelp } from '@tabler/icons-react';
+import { IconSun, IconMoon, IconHelp, IconX } from '@tabler/icons-react';
 import { useState } from 'react';
 import { useAppStore } from '@/hooks/useAppStore';
 import { useTranslations } from '@/hooks/useTranslations';
+import { useSidebarStore } from '@/hooks/useSidebarStore';
 import { GeometrySelector } from './GeometrySelector';
 import { ColorSelector } from './ColorSelector';
 import { MotionControls } from './MotionControls';
@@ -13,6 +14,7 @@ import { Footer } from './Footer';
 
 export function Sidebar() {
   const { theme, toggleTheme } = useAppStore();
+  const { isMobile, close } = useSidebarStore();
   const t = useTranslations();
   const [helpOpened, setHelpOpened] = useState(false);
 
@@ -23,6 +25,16 @@ export function Sidebar() {
           {t.app.title}
         </Text>
         <Group gap="xs">
+          {isMobile && (
+            <ActionIcon
+              variant="subtle"
+              size="lg"
+              onClick={close}
+              aria-label="Close sidebar"
+            >
+              <IconX size={18} />
+            </ActionIcon>
+          )}
           <ActionIcon
             variant="subtle"
             size="lg"
@@ -61,7 +73,7 @@ export function Sidebar() {
         onClose={() => setHelpOpened(false)}
       />
 
-      <Footer />
+      {!isMobile && <Footer />}
     </Stack>
   );
 }

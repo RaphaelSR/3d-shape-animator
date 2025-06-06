@@ -88,8 +88,8 @@ export function ControlsHelpModal({ opened, onClose }: ControlsHelpModalProps) {
             </List.Item>
             <List.Item>
               <Group gap="xs">
-                <Kbd>1-6</Kbd>
-                <Text>Selecionar geometria</Text>
+                <Kbd>1-9, 0, -, =</Kbd>
+                <Text>Selecionar geometria (1-12)</Text>
               </Group>
             </List.Item>
             <List.Item>
