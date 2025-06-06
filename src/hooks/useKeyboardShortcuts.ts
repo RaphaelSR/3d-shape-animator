@@ -5,7 +5,7 @@ import { GEOMETRY_CONFIGS } from '@/utils/types';
 export function useKeyboardShortcuts() {
   const {
     selectedGeometry,
-    setSelectedGeometry,
+    setGeometry,
     isAnimating,
     toggleAnimation,
     toggleTheme,
@@ -45,7 +45,7 @@ export function useKeyboardShortcuts() {
         event.preventDefault();
         const geometryIndex = parseInt(key) - 1;
         if (geometryIndex < GEOMETRY_CONFIGS.length) {
-          setSelectedGeometry(GEOMETRY_CONFIGS[geometryIndex].type);
+          setGeometry(GEOMETRY_CONFIGS[geometryIndex].type);
         }
         return;
       }
@@ -101,7 +101,7 @@ export function useKeyboardShortcuts() {
     };
   }, [
     selectedGeometry,
-    setSelectedGeometry,
+    setGeometry,
     isAnimating,
     toggleAnimation,
     toggleTheme,
