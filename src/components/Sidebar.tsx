@@ -7,6 +7,7 @@ import { ColorSelector } from './ColorSelector';
 import { MotionControls } from './MotionControls';
 import { ExportControls } from './ExportControls';
 import { ControlsHelpModal } from './ControlsHelpModal';
+import { Footer } from './Footer';
 
 export function Sidebar() {
   const { theme, toggleTheme } = useAppStore();
@@ -54,6 +55,8 @@ export function Sidebar() {
         opened={helpOpened}
         onClose={() => setHelpOpened(false)}
       />
+
+      <Footer />
     </Stack>
   );
 }

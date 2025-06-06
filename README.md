@@ -1,6 +1,10 @@
-# Geometry Motion Studio
+# 3D Shape Animator
 
 A beautiful, interactive 3D shape animator built with React, TypeScript, and Three.js. Create stunning animated geometries with customizable colors, motions, and export capabilities.
+
+## 🌐 Live Demo
+
+**🚀 [Try it now at: https://raphaelsr.github.io/3d-shape-animator/](https://raphaelsr.github.io/3d-shape-animator/)**
 
 ## ✨ Features
 
@@ -24,8 +28,8 @@ A beautiful, interactive 3D shape animator built with React, TypeScript, and Thr
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/geometry-motion-studio.git
-cd geometry-motion-studio
+git clone https://github.com/RaphaelSR/3d-shape-animator.git
+cd 3d-shape-animator
 
 # Install dependencies
 npm install
@@ -164,7 +168,7 @@ The project includes a GitHub Actions workflow for automatic deployment:
 1. Push to `main` branch
 2. GitHub Actions runs tests and builds
 3. Automatically deploys to GitHub Pages
-4. Live site available at: `https://yourusername.github.io/geometry-motion-studio`
+4. Live site available at: `https://raphaelsr.github.io/3d-shape-animator`
 
 ### Manual Deployment
 
@@ -198,6 +202,14 @@ npm run build
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
+## 👨‍💻 Author
+
+**Raphael Rocha** - Full Stack Developer
+- GitHub: [@RaphaelSR](https://github.com/RaphaelSR)
+- Repository: [3d-shape-animator](https://github.com/RaphaelSR/3d-shape-animator)
+
+This is an open-source project created to showcase modern web development techniques using React, TypeScript, and Three.js. Feel free to explore, learn from, and contribute to the codebase!
+
 ## 💫 Acknowledgments
 
 - [Three.js](https://threejs.org/) - 3D graphics library
@@ -208,4 +220,5 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-Built with ❤️ using React, TypeScript, and Three.js
+**Built with ❤️ by [Raphael Rocha](https://github.com/RaphaelSR)**  
+*Open Source • React • TypeScript • Three.js*
