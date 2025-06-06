@@ -1,0 +1,42 @@
+/* Global styles for full viewport usage */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+}
+
+#root {
+  height: 100vh;
+  width: 100vw;
+}
+
+/* Canvas specific optimizations */
+canvas {
+  display: block;
+  outline: none;
+}
+
+/* Ensure scene takes full space */
+.scene-container {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Responsive breakpoints */
+@media (max-width: 768px) {
+  .sidebar {
+    position: fixed;
+    z-index: 1000;
+    width: 100%;
+    height: auto;
+    max-height: 50vh;
+    overflow-y: auto;
+  }
+  
+  .scene-container {
+    padding-top: 0;
+  }
+}
