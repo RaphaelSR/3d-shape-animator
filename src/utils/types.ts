@@ -1,103 +1,96 @@
-export type GeometryType = 
-  | 'cube' 
-  | 'sphere' 
-  | 'pyramid' 
-  | 'cylinder' 
-  | 'cone' 
-  | 'torus'
-  | 'octahedron'
-  | 'dodecahedron'
-  | 'icosahedron'
-  | 'tetrahedron'
-  | 'capsule'
-  | 'ring';
-
+export const GEOMETRIES = [
+  'cube',
+  'sphere',
+  'pyramid',
+  'cylinder',
+  'cone',
+  'torus',
+  'octahedron',
+  'dodecahedron',
+  'icosahedron',
+  'tetrahedron',
+  'capsule',
+  'ring',
+] as const;
+export type GeometryType = (typeof GEOMETRIES)[number];
 export type Theme = 'light' | 'dark';
-
-export type ExportQuality = 'high' | 'medium' | 'low';
-
-export interface Color {
-  hex: string;
-  name?: string;
-}
-
+export type Language = 'pt-BR' | 'en-US';
 export interface MotionControls {
   spinSpeed: number;
   tiltSpeed: number;
   bounceAmplitude: number;
   orbitRadius: number;
-  zoom: number;
 }
-
+export interface Appearance {
+  primary: string;
+  secondary: string;
+  gradient: boolean;
+  metalness: number;
+  roughness: number;
+}
+export interface MotionPhase {
+  time: number;
+  x: number;
+  y: number;
+}
+export interface Pose {
+  x: number;
+  y: number;
+  z: number;
+  rotationX: number;
+  rotationY: number;
+}
+export const DEFAULT_MOTION: MotionControls = {
+  spinSpeed: 1,
+  tiltSpeed: 0.5,
+  bounceAmplitude: 0.2,
+  orbitRadius: 0,
+};
+export const MOTION_LIMITS: Record<
+  keyof MotionControls,
+  [number, number, number]
+> = {
+  spinSpeed: [0, 3, 0.1],
+  tiltSpeed: [0, 2, 0.1],
+  bounceAmplitude: [0, 1, 0.1],
+  orbitRadius: [0, 3, 0.1],
+};
+export const DEFAULT_APPEARANCE: Appearance = {
+  primary: '#387BFF',
+  secondary: '#86E8E1',
+  gradient: true,
+  metalness: 0.35,
+  roughness: 0.26,
+};
+export const PALETTES = [
+  ['#387BFF', '#86E8E1'],
+  ['#F0693E', '#FFD17D'],
+  ['#AD6DF5', '#F7A2D7'],
+  ['#138A6A', '#BDF6C6'],
+  ['#DBDFE8', '#737E94'],
+  ['#E14973', '#F9B48A'],
+];
+export type ExportFormat = 'png' | 'gif' | 'webm' | 'mp4';
+export type ExportQuality = 'high' | 'medium' | 'low';
 export interface ExportSettings {
+  format: ExportFormat;
   quality: ExportQuality;
-  format: 'mp4' | 'gif';
   fps: number;
   resolution: [number, number];
+  duration: number;
 }
-
-export interface AppState {
-  selectedGeometry: GeometryType;
-  primaryColor: Color;
-  secondaryColor: Color;
-  motionControls: MotionControls;
-  theme: Theme;
-  isAnimating: boolean;
-}
-
-export interface GeometryConfig {
-  type: GeometryType;
-  label: string;
-  icon: string;
-}
-
-export const GEOMETRY_CONFIGS: GeometryConfig[] = [
-  { type: 'cube', label: 'Cube', icon: '🟧' },
-  { type: 'sphere', label: 'Sphere', icon: '🔴' },
-  { type: 'pyramid', label: 'Pyramid', icon: '🔺' },
-  { type: 'cylinder', label: 'Cylinder', icon: '🟫' },
-  { type: 'cone', label: 'Cone', icon: '🔶' },
-  { type: 'torus', label: 'Torus', icon: '🟤' },
-  { type: 'octahedron', label: 'Octahedron', icon: '💎' },
-  { type: 'dodecahedron', label: 'Dodecahedron', icon: '🎲' },
-  { type: 'icosahedron', label: 'Icosahedron', icon: '⚽' },
-  { type: 'tetrahedron', label: 'Tetrahedron', icon: '🔻' },
-  { type: 'capsule', label: 'Capsule', icon: '💊' },
-  { type: 'ring', label: 'Ring', icon: '💍' },
-];
-
-export const DEFAULT_COLORS: Color[] = [
-  { hex: '#FF6B35', name: 'Orange' },
-  { hex: '#F7931E', name: 'Light Orange' },
-  { hex: '#FFD23F', name: 'Yellow' },
-  { hex: '#06FFA5', name: 'Mint' },
-  { hex: '#4ECDC4', name: 'Teal' },
-  { hex: '#45B7D1', name: 'Blue' },
-  { hex: '#96CEB4', name: 'Light Green' },
-  { hex: '#FFEAA7', name: 'Light Yellow' },
-  { hex: '#DDA0DD', name: 'Plum' },
-  { hex: '#98D8C8', name: 'Aqua' },
-  { hex: '#F7DC6F', name: 'Gold' },
-  { hex: '#BB8FCE', name: 'Lavender' },
-];
-
-export const EXPORT_PRESETS: Record<ExportQuality, ExportSettings> = {
-  high: {
-    quality: 'high',
-    format: 'mp4',
-    fps: 60,
-    resolution: [1920, 1080],
-  },
-  medium: {
-    quality: 'medium',
-    format: 'mp4',
-    fps: 30,
-    resolution: [1280, 720],
-  },
-  low: {
-    quality: 'low',
-    format: 'gif',
-    fps: 15,
-    resolution: [854, 480],
-  },
+export const EXPORT_PRESETS = {
+  high: { fps: 60, resolution: [1920, 1080] as [number, number] },
+  medium: { fps: 30, resolution: [1280, 720] as [number, number] },
+  low: { fps: 15, resolution: [854, 480] as [number, number] },
 };
+export interface ExportSession {
+  canvas: HTMLCanvasElement;
+  render: (seconds: number) => void;
+  dispose: () => void;
+}
+export interface SceneHandle {
+  createExport: (settings: ExportSettings) => ExportSession;
+  reframe: () => void;
+  zoom: (factor: number) => void;
+}

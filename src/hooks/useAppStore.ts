@@ -1,86 +1,94 @@
 import { create } from 'zustand';
-import { devtools, persist } from 'zustand/middleware';
-import type { AppState, GeometryType, Color, MotionControls } from '@/utils/types';
-import { SupportedLanguage, detectBrowserLanguage } from '@/i18n';
-
-interface AppStore extends AppState {
-  language: SupportedLanguage;
+import { persist } from 'zustand/middleware';
+import {
+  DEFAULT_APPEARANCE,
+  DEFAULT_MOTION,
+  MOTION_LIMITS,
+  type Appearance,
+  type GeometryType,
+  type Language,
+  type MotionControls,
+  type Theme,
+} from '@/utils/types';
+interface AppStore {
+  geometry: GeometryType;
+  appearance: Appearance;
+  motion: MotionControls;
+  theme: Theme;
+  language: Language;
+  playing: boolean;
+  resetId: number;
   setGeometry: (geometry: GeometryType) => void;
-  setPrimaryColor: (color: Color) => void;
-  setSecondaryColor: (color: Color) => void;
-  setMotionControls: (controls: Partial<MotionControls>) => void;
-  setLanguage: (language: SupportedLanguage) => void;
+  setAppearance: (value: Partial<Appearance>) => void;
+  setMotion: (value: Partial<MotionControls>) => void;
+  setLanguage: (language: Language) => void;
   toggleTheme: () => void;
-  toggleAnimation: () => void;
-  resetControls: () => void;
+  togglePlayback: () => void;
+  pause: () => void;
+  restart: () => void;
+  resetMotion: () => void;
 }
-
-const DEFAULT_MOTION_CONTROLS: MotionControls = {
-  spinSpeed: 1,
-  tiltSpeed: 0.5,
-  bounceAmplitude: 0.2,
-  orbitRadius: 0,
-  zoom: 5,
-};
-
 export const useAppStore = create<AppStore>()(
-  devtools(
-    persist(
-      set => ({
-        selectedGeometry: 'cube',
-        primaryColor: { hex: '#FF6B35', name: 'Orange' },
-        secondaryColor: { hex: '#F7931E', name: 'Light Orange' },
-        motionControls: DEFAULT_MOTION_CONTROLS,
-        theme: 'light',
-        isAnimating: true,
-        language: detectBrowserLanguage(),
-
-        setGeometry: geometry =>
-          set({ selectedGeometry: geometry }, false, 'setGeometry'),
-
-        setPrimaryColor: color =>
-          set({ primaryColor: color }, false, 'setPrimaryColor'),
-
-        setSecondaryColor: color =>
-          set({ secondaryColor: color }, false, 'setSecondaryColor'),
-
-        setMotionControls: controls =>
-          set(
-            state => ({
-              motionControls: { ...state.motionControls, ...controls },
-            }),
-            false,
-            'setMotionControls'
-          ),
-
-        setLanguage: language =>
-          set({ language }, false, 'setLanguage'),
-
-        toggleTheme: () =>
-          set(
-            state => ({ theme: state.theme === 'light' ? 'dark' : 'light' }),
-            false,
-            'toggleTheme'
-          ),
-
-        toggleAnimation: () =>
-          set(state => ({ isAnimating: !state.isAnimating }), false, 'toggleAnimation'),
-
-        resetControls: () =>
-          set(
-            { motionControls: DEFAULT_MOTION_CONTROLS },
-            false,
-            'resetControls'
-          ),
-      }),
-      {
-        name: 'geometry-motion-studio-preferences',
-        partialize: (state) => ({
-          theme: state.theme,
-          language: state.language,
+  persist(
+    set => ({
+      geometry: 'cube',
+      appearance: { ...DEFAULT_APPEARANCE },
+      motion: { ...DEFAULT_MOTION },
+      theme: 'dark',
+      language:
+        typeof navigator !== 'undefined' && navigator.language.startsWith('pt')
+          ? 'pt-BR'
+          : 'en-US',
+      playing:
+        typeof matchMedia !== 'undefined'
+          ? !matchMedia('(prefers-reduced-motion: reduce)').matches
+          : true,
+      resetId: 0,
+      setGeometry: geometry => set({ geometry }),
+      setAppearance: value =>
+        set(state => ({ appearance: { ...state.appearance, ...value } })),
+      setMotion: value =>
+        set(state => {
+          const motion = { ...state.motion };
+          for (const key of Object.keys(value) as (keyof MotionControls)[]) {
+            const input = value[key];
+            if (input !== undefined && Number.isFinite(input))
+              motion[key] = Math.min(
+                MOTION_LIMITS[key][1],
+                Math.max(MOTION_LIMITS[key][0], input)
+              );
+          }
+          return { motion };
         }),
-      }
-    ),
-    { name: 'geometry-motion-studio' }
+      setLanguage: language => set({ language }),
+      toggleTheme: () =>
+        set(state => ({ theme: state.theme === 'dark' ? 'light' : 'dark' })),
+      togglePlayback: () => set(state => ({ playing: !state.playing })),
+      pause: () => set({ playing: false }),
+      restart: () => set(state => ({ resetId: state.resetId + 1 })),
+      resetMotion: () =>
+        set(state => ({
+          motion: { ...DEFAULT_MOTION },
+          resetId: state.resetId + 1,
+        })),
+    }),
+    {
+      name: 'geometry-motion-studio-preferences',
+      partialize: state => ({ theme: state.theme, language: state.language }),
+      merge: (saved, current) => {
+        const data = saved as Partial<AppStore> | null;
+        return {
+          ...current,
+          theme:
+            data?.theme === 'light' || data?.theme === 'dark'
+              ? data.theme
+              : current.theme,
+          language:
+            data?.language === 'pt-BR' || data?.language === 'en-US'
+              ? data.language
+              : current.language,
+        };
+      },
+    }
   )
 );

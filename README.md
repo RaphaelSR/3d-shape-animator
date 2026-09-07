@@ -1,224 +1,83 @@
-# 3D Shape Animator
+# Geometry — Motion Studio
 
-A beautiful, interactive 3D shape animator built with React, TypeScript, and Three.js. Create stunning animated geometries with customizable colors, motions, and export capabilities.
+A browser-based studio for animating a single 3D shape. Built with React 19, TypeScript, Three.js, React Three Fiber, Drei, Mantine and Zustand.
 
-## 🌐 Live Demo
+**[Open the studio](https://raphaelsr.github.io/3d-shape-animator/)**
 
-**🚀 [Try it now at: https://raphaelsr.github.io/3d-shape-animator/](https://raphaelsr.github.io/3d-shape-animator/)**
+## Create
 
-## ✨ Features
+Choose one of twelve primitives, adjust its colors and material, and tune rotation, tilt, bounce and orbit. The spatial gradient follows the object's local vertical axis. Pause freezes playback; Restart returns the motion to its starting pose without changing the controls or playback state. Reset motion restores the default parameters.
 
-- **Interactive 3D Geometries**: Cube, Sphere, Pyramid, Cylinder, Cone, and Torus
-- **Advanced Color Controls**: Preset swatches and custom color pickers with gradient mixing
-- **Motion Animation**: Configurable spin speed, tilt, bounce amplitude, and orbit radius
-- **Export Functionality**: High-quality MP4 and GIF exports at multiple resolutions
-- **Responsive Design**: Works seamlessly from mobile (320px) to 4K displays
-- **Dark/Light Themes**: Automatic UI adaptation with smooth transitions
-- **Accessibility**: Full keyboard navigation and ARIA labels
-- **Real-time Controls**: All animations update immediately with 60fps performance
+Drag to rotate the camera, right-drag or Shift-drag to pan, and scroll/pinch to zoom. Framing restores the initial camera view. On small screens the properties panel folds down to leave more room for the scene. Portuguese and English, dark and light themes, keyboard navigation and reduced-motion preferences are supported. Only theme and language are saved on this device; no account or backend is involved.
 
-## 🚀 Quick Start
+## Export
 
-### Prerequisites
+- **PNG:** one frame at 480p, 720p or 1080p.
+- **GIF:** 480p at 15 fps, encoded in local workers, with independent frames.
+- **MP4 / WebM:** available only when the browser supports recording that format. Medium is 720p/30 fps; High is 1080p/60 fps. Video recording is real-time, so achieved frame rate depends on the browser and GPU.
+- Animated exports run for 1–10 seconds (default: 3), even when preview playback is paused. If all motion controls are zero, the export is still.
 
-- Node.js 18+ 
-- npm or yarn
+Exports render a snapshot of the scene using a separate renderer and camera at the requested resolution. Narrower aspect ratios expand the vertical field of view to retain the horizontal framing. Editor controls are excluded; the scene background and shadows are included. The preview camera, motion phase and play/pause state are preserved. Progress, cancellation and errors are shown in the export dialog. Hiding the tab cancels the export to avoid a throttled recording. Keep the tab visible until the download begins.
 
-### Installation
+No external HDRI, media service, codec service or CDN is required at runtime. The lighting environment is generated with Three.js `RoomEnvironment` and PMREM. GIF workers are bundled under the correct GitHub Pages base path.
 
-```bash
-# Clone the repository
-git clone https://github.com/RaphaelSR/3d-shape-animator.git
-cd 3d-shape-animator
+## Run locally
 
-# Install dependencies
-npm install
+Use Node **22.22.2 or newer** (the pinned development/CI version is in `.nvmrc`) and npm.
 
-# Start development server
+```sh
+nvm use
+npm ci
 npm run dev
 ```
 
-The application will open at `http://localhost:3000`
+Open `http://127.0.0.1:3000/3d-shape-animator/`. On this Mac the checkout is at `/Volumes/Lexar-M2-Projetos/Projetos/3d-shape-animator`; mount the SSD before opening it.
 
-## 🛠️ Available Scripts
-
-| Script | Description |
-|--------|-------------|
-| `npm run dev` | Start development server with hot reload |
-| `npm run build` | Create production build |
-| `npm run preview` | Preview production build locally |
-| `npm run lint` | Run ESLint for code quality checks |
-| `npm run lint:fix` | Automatically fix ESLint issues |
-| `npm run format` | Format code with Prettier |
-| `npm run test` | Run unit tests with Vitest |
-| `npm run test:ui` | Run tests with interactive UI |
-| `npm run test:coverage` | Generate test coverage report |
-
-## 🏗️ Project Structure
-
-```
-src/
-├── assets/          # Static assets
-├── components/      # Reusable UI components
-│   ├── AnimatedGeometry.tsx
-│   ├── ColorSelector.tsx
-│   ├── ExportControls.tsx
-│   ├── GeometrySelector.tsx
-│   ├── MotionControls.tsx
-│   ├── Scene.tsx
-│   └── Sidebar.tsx
-├── features/        # Feature-specific components
-├── hooks/          # Custom React hooks
-│   └── useAppStore.ts
-├── pages/          # Page components
-│   └── HomePage.tsx
-├── styles/         # Global styles and themes
-├── test/           # Test utilities and setup
-├── utils/          # Utility functions and types
-│   ├── exportUtils.ts
-│   └── types.ts
-└── main.tsx        # Application entry point
-```
-
-## 🎨 Usage Guide
-
-### Basic Controls
-
-1. **Geometry Selection**: Choose from 6 different 3D shapes in the left sidebar
-2. **Color Customization**: 
-   - Use preset color swatches for quick selection
-   - Use the color picker for custom colors
-   - Set both primary and secondary colors for gradient effects
-3. **Motion Controls**: 
-   - Adjust spin speed (0-3x)
-   - Control tilt rotation (0-2x)  
-   - Set bounce amplitude (0-1)
-   - Configure orbit radius (0-3)
-
-### Animation Controls
-
-- **Play/Pause**: Toggle animation playback
-- **Reset**: Return all motion controls to default values
-- Setting all controls to zero automatically stops animation
-
-### Export Options
-
-Choose from three quality presets:
-- **High**: MP4 at 60fps, 1080p resolution
-- **Medium**: MP4 at 30fps, 720p resolution  
-- **Low**: GIF at 15fps, 480p resolution
-
-Exports capture only the 3D object, not the entire interface.
-
-### Keyboard Accessibility
-
-- `Tab`: Navigate between controls
-- `Space/Enter`: Activate buttons and selections
-- `Arrow Keys`: Adjust slider values
-- `Esc`: Close modals and dropdowns
-
-## 🧪 Testing
-
-The project uses Vitest for unit testing with comprehensive coverage of:
-
-- Store state management
-- Component rendering
-- User interactions
-- Export functionality
-
-```bash
-# Run all tests
-npm run test
-
-# Run tests with coverage
-npm run test:coverage
-
-# Run tests in watch mode
-npm run test:watch
-```
-
-## 🔧 Development
-
-### Code Quality
-
-The project enforces strict TypeScript and code quality standards:
-
-- **TypeScript**: Strict mode enabled with `noImplicitAny`
-- **ESLint**: Comprehensive rules for React and TypeScript
-- **Prettier**: Consistent code formatting
-- **Husky**: Pre-commit hooks for quality checks
-
-### Adding New Geometries
-
-1. Add the geometry type to `src/utils/types.ts`
-2. Update `GEOMETRY_CONFIGS` with label and icon
-3. Add the geometry case in `AnimatedGeometry.tsx`
-4. Update tests accordingly
-
-### Customizing Themes
-
-Themes are managed through Mantine's color scheme system. Modify `src/App.tsx` to add new theme variants or customize existing ones.
-
-## 🚀 Deployment
-
-### GitHub Pages (Automated)
-
-The project includes a GitHub Actions workflow for automatic deployment:
-
-1. Push to `main` branch
-2. GitHub Actions runs tests and builds
-3. Automatically deploys to GitHub Pages
-4. Live site available at: `https://raphaelsr.github.io/3d-shape-animator`
-
-### Manual Deployment
-
-```bash
-# Build for production
+```sh
+npm run lint
+npm test
 npm run build
-
-# The dist/ folder contains the built application
-# Upload to your hosting provider
+npm run preview
 ```
 
-## 🤝 Contributing
+The build includes strict type checking. `npm run test:watch` runs interactive unit tests; `npm run test:coverage` generates coverage. To run browser tests, install Chromium and FFmpeg (`brew install ffmpeg` on macOS; `apt-get install ffmpeg` on Ubuntu), then:
 
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Make your changes following the coding standards
-4. Run tests and linting (`npm run test && npm run lint`)
-5. Commit your changes (`git commit -m 'Add amazing feature'`)
-6. Push to the branch (`git push origin feature/amazing-feature`)
-7. Open a Pull Request
+```sh
+npx playwright install chromium
+npm run build
+npm run test:e2e
+```
 
-### Contribution Guidelines
+For installed Chrome, use `PLAYWRIGHT_CHANNEL=chrome npm run test:e2e`. To verify an already running server or production deployment, set `PLAYWRIGHT_BASE_URL` to its complete application URL, including `/3d-shape-animator/`.
 
-- Follow existing code style and patterns
-- Add tests for new functionality
-- Update documentation as needed
-- Ensure all CI checks pass
-- Use descriptive commit messages
+## Implementation
 
-## 📄 License
+- `Studio` owns the editor layout, accessible controls and dialogs. Zustand holds editable parameters; only theme/language are persisted, with validation compatible with the previous storage key.
+- `Scene` owns one preview canvas and OrbitControls. The playback phase stays outside React state and advances with delta time. Paused/still/hidden scenes stop requesting animation frames; user camera interaction still renders on demand. DPR is capped at 1.75.
+- Geometry creation and vertex-color gradients are shared. Materials, geometries, environment maps, export renderers, worker threads and recording streams have explicit cleanup.
+- `exportAnimation(source, settings, signal, onProgress)` returns a Blob. `SceneHandle.createExport` returns an isolated export session (`canvas`, `render(seconds)`, `dispose()`). Format detection precedes video allocation; every outcome disposes the export renderer.
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+## Shortcuts
 
-## 👨‍💻 Author
+Shortcuts are disabled while editing fields, using interactive controls or opening dialogs. Native browser shortcuts are preserved.
 
-**Raphael Rocha** - Full Stack Developer
-- GitHub: [@RaphaelSR](https://github.com/RaphaelSR)
-- Repository: [3d-shape-animator](https://github.com/RaphaelSR/3d-shape-animator)
+| Key          | Action                   |
+| ------------ | ------------------------ |
+| Space        | Play / pause             |
+| 1–9, 0, −, = | Select the twelve shapes |
+| R            | Restart motion           |
+| F            | Frame object             |
+| T            | Change theme             |
+| E / H        | Export / help            |
+| ↑ / ↓        | Rotation speed           |
+| ← / →        | Tilt speed               |
+| Z / X        | Zoom out / in            |
+| B / O        | Toggle bounce / orbit    |
 
-This is an open-source project created to showcase modern web development techniques using React, TypeScript, and Three.js. Feel free to explore, learn from, and contribute to the codebase!
+## Publish
 
-## 💫 Acknowledgments
+GitHub Actions validates pull requests and `main`: lint, unit tests, type checking, production build, production dependency audit and Chromium browser tests. Tests inspect real PNG/GIF/video downloads with FFmpeg/FFprobe. Only the resulting `dist` artifact from `main` is deployed to GitHub Pages. Failure reports are retained for seven days.
 
-- [Three.js](https://threejs.org/) - 3D graphics library
-- [React Three Fiber](https://github.com/pmndrs/react-three-fiber) - React renderer for Three.js
-- [Mantine](https://mantine.dev/) - React components library
-- [Zustand](https://github.com/pmndrs/zustand) - State management
-- [Vite](https://vitejs.dev/) - Build tool and development server
+For a release, merge only after validation succeeds, then verify the published URL and downloads. To roll back, revert the release commit on `main`; the same pipeline validates and republishes the previous implementation. Do not rewrite shared history.
 
----
-
-**Built with ❤️ by [Raphael Rocha](https://github.com/RaphaelSR)**  
-*Open Source • React • TypeScript • Three.js*
+Visual references: [Spline](https://spline.design/) for the focused editing surface and [Three.js examples](https://threejs.org/examples/) for lighting and material treatment. No proprietary assets were copied.
