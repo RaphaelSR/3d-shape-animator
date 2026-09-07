@@ -1,32 +1,207 @@
-import { SupportedLanguage, Translations } from './types';
-import { ptBR } from './pt-BR';
-import { enUS } from './en-US';
-
-const translations: Record<SupportedLanguage, Translations> = {
-  'pt-BR': ptBR,
-  'en-US': enUS,
+import type { GeometryType } from '@/utils/types';
+const en = {
+  studio: 'Geometry',
+  studioSuffix: 'Motion studio',
+  export: 'Export',
+  properties: 'Properties',
+  geometry: 'Geometry',
+  appearance: 'Appearance',
+  motion: 'Motion',
+  chooseShape: 'Choose a shape',
+  shapeHint: '12 primitives. Endless motion.',
+  material: 'Material',
+  colors: 'Color palette',
+  primary: 'Primary color',
+  pickColor: 'Pick a color from the screen',
+  secondary: 'Secondary color',
+  gradient: 'Color gradient',
+  metalness: 'Metalness',
+  roughness: 'Roughness',
+  spinSpeed: 'Rotation',
+  tiltSpeed: 'Tilt',
+  bounceAmplitude: 'Bounce',
+  orbitRadius: 'Orbit',
+  resetMotion: 'Reset motion',
+  play: 'Play',
+  pause: 'Pause',
+  restart: 'Restart',
+  reframe: 'Frame object',
+  zoomIn: 'Zoom in',
+  zoomOut: 'Zoom out',
+  live: 'Live preview',
+  paused: 'Paused',
+  still: 'Still',
+  scene: '3D scene',
+  dragHint: 'Drag to rotate · Scroll to zoom',
+  touchHint: 'Drag to rotate · Pinch to zoom',
+  help: 'Help & shortcuts',
+  theme: 'Change theme',
+  language: 'Language',
+  edit: 'Edit shape',
+  collapse: 'Collapse properties',
+  source: 'Source on GitHub',
+  loading: 'Preparing your scene…',
+  graphicsError: 'The 3D scene is unavailable',
+  graphicsHelp:
+    'Enable hardware acceleration or try another browser. If graphics were interrupted, reload to reconnect.',
+  retry: 'Reload',
+  exportTitle: 'Export your creation',
+  exportHint:
+    'Only the scene is exported. Your editor stays exactly as you left it.',
+  format: 'Format',
+  quality: 'Quality',
+  duration: 'Duration',
+  seconds: 'seconds',
+  high: 'High · 1080p · 60 fps',
+  medium: 'Medium · 720p · 30 fps',
+  low: 'Low · 480p · 15 fps',
+  videoQuality:
+    'Video is recorded in real time. Frame rate depends on your browser and graphics hardware.',
+  gifQuality: 'GIF uses 480p at 15 fps to keep files manageable.',
+  imageQuality: 'PNG exports a single frame at the selected resolution.',
+  download: 'Download',
+  cancel: 'Cancel',
+  close: 'Close',
+  exporting: 'Creating your file…',
+  exportSuccess: 'Your file is ready. Download started.',
+  exportError: 'Export failed. Try a lower quality or another format.',
+  exportCancelled: 'Export cancelled. Your scene is unchanged.',
+  noVideo:
+    'Video recording is unavailable in this browser. PNG and GIF are supported.',
+  exportHidden:
+    'Export cancelled because the tab was hidden. Keep this tab visible while exporting.',
+  helpTitle: 'A little help, a lot of possibilities',
+  mouseTitle: 'Move around',
+  rotate: 'Drag to rotate the view',
+  pan: 'Right-drag or Shift-drag to pan',
+  zoom: 'Scroll or pinch to zoom',
+  keyboardTitle: 'Keyboard',
+  selectShape: 'Select a shape',
+  themeKey: 'Change theme',
+  restartKey: 'Restart motion',
+  frameKey: 'Frame object',
+  exportKey: 'Open export',
+  helpKey: 'Open help',
+  reduced:
+    'Motion is paused to respect your device preference. Press Play to animate.',
 };
-
-// Detecta o idioma do navegador
-export function detectBrowserLanguage(): SupportedLanguage {
-  const browserLang = navigator.language;
-  
-  if (browserLang.startsWith('pt')) {
-    return 'pt-BR';
-  }
-  
-  return 'en-US'; // Padrão para inglês
-}
-
-// Obtém as traduções para um idioma específico
-export function getTranslations(language: SupportedLanguage): Translations {
-  return translations[language];
-}
-
-// Lista de idiomas suportados para o seletor
-export const supportedLanguages: { code: SupportedLanguage; name: string; flag: string }[] = [
-  { code: 'pt-BR', name: 'Português (BR)', flag: '🇧🇷' },
-  { code: 'en-US', name: 'English (US)', flag: '🇺🇸' },
-];
-
-export { type SupportedLanguage, type Translations };
+type Copy = { [K in keyof typeof en]: string };
+const pt: Copy = {
+  studio: 'Geometry',
+  studioSuffix: 'Estúdio de movimento',
+  export: 'Exportar',
+  properties: 'Propriedades',
+  geometry: 'Geometria',
+  appearance: 'Aparência',
+  motion: 'Movimento',
+  chooseShape: 'Escolha uma forma',
+  shapeHint: '12 formas. Infinitos movimentos.',
+  material: 'Material',
+  colors: 'Paleta de cores',
+  primary: 'Cor primária',
+  pickColor: 'Capturar uma cor da tela',
+  secondary: 'Cor secundária',
+  gradient: 'Gradiente de cores',
+  metalness: 'Metalização',
+  roughness: 'Rugosidade',
+  spinSpeed: 'Rotação',
+  tiltSpeed: 'Inclinação',
+  bounceAmplitude: 'Salto',
+  orbitRadius: 'Órbita',
+  resetMotion: 'Restaurar movimento',
+  play: 'Reproduzir',
+  pause: 'Pausar',
+  restart: 'Reiniciar',
+  reframe: 'Enquadrar objeto',
+  zoomIn: 'Aproximar',
+  zoomOut: 'Afastar',
+  live: 'Prévia ao vivo',
+  paused: 'Pausado',
+  still: 'Estático',
+  scene: 'Cena 3D',
+  dragHint: 'Arraste para girar · Role para aproximar',
+  touchHint: 'Arraste para girar · Pince para aproximar',
+  help: 'Ajuda e atalhos',
+  theme: 'Alternar tema',
+  language: 'Idioma',
+  edit: 'Editar forma',
+  collapse: 'Recolher propriedades',
+  source: 'Código no GitHub',
+  loading: 'Preparando sua cena…',
+  graphicsError: 'A cena 3D está indisponível',
+  graphicsHelp:
+    'Ative a aceleração de hardware ou tente outro navegador. Se a conexão gráfica foi interrompida, recarregue para reconectar.',
+  retry: 'Recarregar',
+  exportTitle: 'Exporte sua criação',
+  exportHint:
+    'Apenas a cena é exportada. Seu editor continua exatamente como você o deixou.',
+  format: 'Formato',
+  quality: 'Qualidade',
+  duration: 'Duração',
+  seconds: 'segundos',
+  high: 'Alta · 1080p · 60 fps',
+  medium: 'Média · 720p · 30 fps',
+  low: 'Baixa · 480p · 15 fps',
+  videoQuality:
+    'O vídeo é gravado em tempo real. A taxa de quadros depende do navegador e do desempenho gráfico.',
+  gifQuality: 'O GIF usa 480p a 15 fps para manter o arquivo leve.',
+  imageQuality: 'O PNG exporta um único quadro na resolução selecionada.',
+  download: 'Baixar',
+  cancel: 'Cancelar',
+  close: 'Fechar',
+  exporting: 'Criando seu arquivo…',
+  exportSuccess: 'Seu arquivo está pronto. Download iniciado.',
+  exportError: 'Falha ao exportar. Tente outra qualidade ou formato.',
+  exportCancelled: 'Exportação cancelada. Sua cena foi preservada.',
+  noVideo: 'Vídeo indisponível neste navegador. PNG e GIF estão disponíveis.',
+  exportHidden:
+    'Exportação cancelada porque a aba foi ocultada. Mantenha esta aba visível ao exportar.',
+  helpTitle: 'Uma ajuda para criar mais',
+  mouseTitle: 'Explore a cena',
+  rotate: 'Arraste para girar a câmera',
+  pan: 'Botão direito ou Shift + arrastar para mover',
+  zoom: 'Role ou pince para aproximar',
+  keyboardTitle: 'Teclado',
+  selectShape: 'Selecionar forma',
+  themeKey: 'Alternar tema',
+  restartKey: 'Reiniciar movimento',
+  frameKey: 'Enquadrar objeto',
+  exportKey: 'Abrir exportação',
+  helpKey: 'Abrir ajuda',
+  reduced:
+    'O movimento está pausado para respeitar sua preferência no dispositivo. Use Reproduzir para animar.',
+};
+export const translations = { 'en-US': en, 'pt-BR': pt };
+export const geometryNames: Record<
+  'en-US' | 'pt-BR',
+  Record<GeometryType, string>
+> = {
+  'en-US': {
+    cube: 'Cube',
+    sphere: 'Sphere',
+    pyramid: 'Pyramid',
+    cylinder: 'Cylinder',
+    cone: 'Cone',
+    torus: 'Torus',
+    octahedron: 'Octahedron',
+    dodecahedron: 'Dodecahedron',
+    icosahedron: 'Icosahedron',
+    tetrahedron: 'Tetrahedron',
+    capsule: 'Capsule',
+    ring: 'Ring',
+  },
+  'pt-BR': {
+    cube: 'Cubo',
+    sphere: 'Esfera',
+    pyramid: 'Pirâmide',
+    cylinder: 'Cilindro',
+    cone: 'Cone',
+    torus: 'Toro',
+    octahedron: 'Octaedro',
+    dodecahedron: 'Dodecaedro',
+    icosahedron: 'Icosaedro',
+    tetrahedron: 'Tetraedro',
+    capsule: 'Cápsula',
+    ring: 'Anel',
+  },
+};

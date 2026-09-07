@@ -1,30 +1,35 @@
 import { MantineProvider, createTheme } from '@mantine/core';
 import { useAppStore } from '@/hooks/useAppStore';
-import { HomePage } from '@/pages/HomePage';
+import { Studio } from '@/components/Studio';
 import '@mantine/core/styles.css';
 import '@/styles/globals.css';
-
 const theme = createTheme({
   primaryColor: 'blue',
-  fontFamily: 'Inter, system-ui, sans-serif',
-  headings: {
-    fontFamily: 'Inter, system-ui, sans-serif',
-  },
-  breakpoints: {
-    xs: '30em',
-    sm: '48em',
-    md: '64em',
-    lg: '74em',
-    xl: '90em',
+  primaryShade: 6,
+  fontFamily:
+    'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+  defaultRadius: 'md',
+  headings: { fontWeight: '600' },
+  colors: {
+    dark: [
+      '#e8edf7',
+      '#c2cad9',
+      '#9aa6bb',
+      '#637087',
+      '#363f50',
+      '#262d3b',
+      '#1b212d',
+      '#181d27',
+      '#131720',
+      '#0c1018',
+    ],
   },
 });
-
 export function App() {
-  const { theme: appTheme } = useAppStore();
-
+  const colorScheme = useAppStore(state => state.theme);
   return (
-    <MantineProvider theme={theme} forceColorScheme={appTheme}>
-      <HomePage />
+    <MantineProvider theme={theme} forceColorScheme={colorScheme}>
+      <Studio />
     </MantineProvider>
   );
 }

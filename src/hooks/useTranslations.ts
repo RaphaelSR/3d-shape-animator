@@ -1,7 +1,5 @@
+import { translations } from '@/i18n';
 import { useAppStore } from './useAppStore';
-import { getTranslations } from '@/i18n';
-
 export function useTranslations() {
-  const language = useAppStore(state => state.language);
-  return getTranslations(language);
+  return translations[useAppStore(state => state.language)];
 }
