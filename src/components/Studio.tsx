@@ -1,19 +1,17 @@
 import { ColorInput, Modal, Switch } from '@mantine/core';
-import {
-  IconArrowDown,
-  IconArrowsMaximize,
-  IconBrandGithub,
-  IconChevronDown,
-  IconChevronUp,
-  IconHelp,
-  IconMinus,
-  IconMoon,
-  IconPlayerPauseFilled,
-  IconPlayerPlayFilled,
-  IconPlus,
-  IconRotateClockwise,
-  IconSun,
-} from '@tabler/icons-react';
+import IconArrowDown from '@tabler/icons-react/dist/esm/icons/IconArrowDown.mjs';
+import IconArrowsMaximize from '@tabler/icons-react/dist/esm/icons/IconArrowsMaximize.mjs';
+import IconBrandGithub from '@tabler/icons-react/dist/esm/icons/IconBrandGithub.mjs';
+import IconChevronDown from '@tabler/icons-react/dist/esm/icons/IconChevronDown.mjs';
+import IconChevronUp from '@tabler/icons-react/dist/esm/icons/IconChevronUp.mjs';
+import IconHelp from '@tabler/icons-react/dist/esm/icons/IconHelp.mjs';
+import IconMinus from '@tabler/icons-react/dist/esm/icons/IconMinus.mjs';
+import IconMoon from '@tabler/icons-react/dist/esm/icons/IconMoon.mjs';
+import IconPlayerPauseFilled from '@tabler/icons-react/dist/esm/icons/IconPlayerPauseFilled.mjs';
+import IconPlayerPlayFilled from '@tabler/icons-react/dist/esm/icons/IconPlayerPlayFilled.mjs';
+import IconPlus from '@tabler/icons-react/dist/esm/icons/IconPlus.mjs';
+import IconRotateClockwise from '@tabler/icons-react/dist/esm/icons/IconRotateClockwise.mjs';
+import IconSun from '@tabler/icons-react/dist/esm/icons/IconSun.mjs';
 import {
   lazy,
   Suspense,

@@ -1,5 +1,6 @@
 import { Modal } from '@mantine/core';
-import { IconArrowDown, IconCheck } from '@tabler/icons-react';
+import IconArrowDown from '@tabler/icons-react/dist/esm/icons/IconArrowDown.mjs';
+import IconCheck from '@tabler/icons-react/dist/esm/icons/IconCheck.mjs';
 import { useEffect, useRef, useState } from 'react';
 import { useTranslations } from '@/hooks/useTranslations';
 import {
