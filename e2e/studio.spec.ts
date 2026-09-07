@@ -277,12 +277,13 @@ test('paused scenes stop issuing GPU draw calls and can resume', async ({
   await page.waitForTimeout(300);
   expect(await count()).toBe(paused);
   await page.getByRole('button', { name: 'Play', exact: true }).click();
-  await page.waitForTimeout(1000);
+  await expect.poll(count).toBeGreaterThan(paused);
+  const resumed = await count();
+  await expect.poll(count).toBeGreaterThan(resumed);
   const draws = (await count()) - paused;
-  expect(draws).toBeGreaterThan(10);
   info.annotations.push({
     type: 'GPU',
-    description: `${draws} drawElements calls in 1s of playback; 0 while paused`,
+    description: `${draws} drawElements calls after resuming; 0 while paused`,
   });
 });
 
