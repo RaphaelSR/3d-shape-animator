@@ -156,6 +156,9 @@ export function ExportControls({
         )}
         {format === 'gif' && <p className="muted">{t.gifQuality}</p>}
         {format === 'png' && <p className="muted">{t.imageQuality}</p>}
+        {(format === 'mp4' || format === 'webm') && (
+          <p className="muted">{t.videoQuality}</p>
+        )}
       </fieldset>
       {busy && (
         <div className="export-progress" role="status">

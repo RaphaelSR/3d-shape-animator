@@ -55,6 +55,8 @@ const en = {
   high: 'High · 1080p · 60 fps',
   medium: 'Medium · 720p · 30 fps',
   low: 'Low · 480p · 15 fps',
+  videoQuality:
+    'Video is recorded in real time. Frame rate depends on your browser and graphics hardware.',
   gifQuality: 'GIF uses 480p at 15 fps to keep files manageable.',
   imageQuality: 'PNG exports a single frame at the selected resolution.',
   download: 'Download',
@@ -140,6 +142,8 @@ const pt: Copy = {
   high: 'Alta · 1080p · 60 fps',
   medium: 'Média · 720p · 30 fps',
   low: 'Baixa · 480p · 15 fps',
+  videoQuality:
+    'O vídeo é gravado em tempo real. A taxa de quadros depende do navegador e do desempenho gráfico.',
   gifQuality: 'O GIF usa 480p a 15 fps para manter o arquivo leve.',
   imageQuality: 'O PNG exporta um único quadro na resolução selecionada.',
   download: 'Baixar',

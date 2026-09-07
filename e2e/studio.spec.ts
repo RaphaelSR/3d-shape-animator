@@ -205,7 +205,18 @@ test('GIF contains moving frames and video has the selected resolution', async (
     const metadata = probe(videoPath);
     expect(metadata.streams[0].width).toBe(1280);
     expect(metadata.streams[0].height).toBe(720);
-    expect(Number(metadata.streams[0].nb_read_frames)).toBeGreaterThan(30);
+    expect(Number(metadata.streams[0].nb_read_frames)).toBeGreaterThan(1);
+    expect(Number(metadata.format.duration)).toBeGreaterThan(1.5);
+    expect(Number(metadata.format.duration)).toBeLessThan(2.5);
+    const videoHashes = execFileSync(
+      'ffmpeg',
+      ['-v', 'error', '-i', videoPath, '-f', 'framemd5', '-'],
+      { encoding: 'utf8' }
+    )
+      .split('\n')
+      .filter(line => line && !line.startsWith('#'))
+      .map(line => line.split(',').at(-1));
+    expect(new Set(videoHashes).size).toBeGreaterThan(1);
   }
 });
 test('export can be cancelled and retried', async ({ page }) => {
@@ -303,4 +314,43 @@ test('unavailable WebGL shows a recoverable message and disables export', async 
   await expect(
     page.getByRole('button', { name: 'Export', exact: true })
   ).toBeDisabled();
+});
+
+test('slow export rendering keeps the requested video duration', async ({
+  page,
+}, info) => {
+  await page.addInitScript(() => {
+    const original = WebGL2RenderingContext.prototype.drawElements;
+    WebGL2RenderingContext.prototype.drawElements = function (...args) {
+      if (
+        this.canvas instanceof HTMLCanvasElement &&
+        !this.canvas.isConnected
+      ) {
+        const until = performance.now() + 40;
+        while (performance.now() < until) {
+          /* Simulate expensive rendering in the detached export context. */
+        }
+      }
+      return original.apply(this, args);
+    };
+  });
+  await page.reload();
+  await expect(
+    page.getByRole('button', { name: 'Pause', exact: true })
+  ).toBeEnabled();
+  await page.getByRole('button', { name: 'Pause', exact: true }).click();
+  await page.getByRole('button', { name: 'Export', exact: true }).click();
+  await page.getByLabel('Format', { exact: true }).selectOption('webm');
+  await page.getByLabel('Duration', { exact: false }).fill('2');
+  const promise = page.waitForEvent('download');
+  await page
+    .getByRole('button', { name: 'Download WEBM', exact: true })
+    .click();
+  const download = await promise;
+  const path = info.outputPath('slow.webm');
+  await download.saveAs(path);
+  const metadata = probe(path);
+  expect(Number(metadata.streams[0].nb_read_frames)).toBeGreaterThan(1);
+  expect(Number(metadata.format.duration)).toBeGreaterThan(1.5);
+  expect(Number(metadata.format.duration)).toBeLessThan(2.5);
 });

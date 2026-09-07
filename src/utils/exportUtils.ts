@@ -176,18 +176,25 @@ async function encodeVideo(
     try {
       activeRecorder.start();
       const start = performance.now();
-      const frames = Math.round(settings.duration * settings.fps);
-      for (let frame = 0; frame < frames; frame++) {
+      const durationMs = settings.duration * 1000;
+      while (performance.now() - start < durationMs) {
         checkAbort(signal);
         if (recorderError) throw recorderError;
+        const elapsed = performance.now() - start;
+        session.render(elapsed / 1000);
+        progress(Math.min(elapsed / durationMs, 1));
+        // Skip missed frames instead of extending the clip on slower GPUs.
+        const nextFrame =
+          ((Math.floor(((performance.now() - start) * settings.fps) / 1000) +
+            1) *
+            1000) /
+          settings.fps;
         await wait(
-          start + (frame * 1000) / settings.fps - performance.now(),
+          start + Math.min(nextFrame, durationMs) - performance.now(),
           signal
         );
-        session.render(frame / settings.fps);
-        progress((frame + 1) / frames);
       }
-      await wait(start + settings.duration * 1000 - performance.now(), signal);
+      progress(1);
       activeRecorder.stop();
       const blob = await stopped;
       checkAbort(signal);
