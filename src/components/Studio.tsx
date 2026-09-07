@@ -416,6 +416,7 @@ export function Studio() {
                       }
                     />
                     <ColorInput
+                      eyeDropperButtonProps={{ 'aria-label': t.pickColor }}
                       label={t.primary}
                       value={state.appearance.primary}
                       format="hex"
@@ -426,6 +427,7 @@ export function Studio() {
                       fixOnBlur
                     />
                     <ColorInput
+                      eyeDropperButtonProps={{ 'aria-label': t.pickColor }}
                       label={t.secondary}
                       value={state.appearance.secondary}
                       format="hex"
