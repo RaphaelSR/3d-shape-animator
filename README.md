@@ -2,7 +2,7 @@
 
 A browser-based studio for animating a single 3D shape. Built with React 19, TypeScript, Three.js, React Three Fiber, Drei, Mantine and Zustand.
 
-**[Open the studio](https://raphaelsr.github.io/3d-shape-animator/)**
+**[Open the studio](https://3d.raphaelrocha.com/)**
 
 ## Create
 
@@ -31,7 +31,7 @@ npm ci
 npm run dev
 ```
 
-Open `http://127.0.0.1:3000/3d-shape-animator/`. On this Mac the checkout is at `/Volumes/Lexar-M2-Projetos/Projetos/3d-shape-animator`; mount the SSD before opening it.
+Open `http://127.0.0.1:3000/`. On this Mac the checkout is at `/Volumes/Lexar-M2-Projetos/Projetos/3d-shape-animator`; mount the SSD before opening it.
 
 ```sh
 npm run lint

@@ -8,7 +8,7 @@ export default defineConfig({
   workers: 1,
   reporter: [['list'], ['html', { open: 'never' }]],
   use: {
-    baseURL: external || 'http://127.0.0.1:3000/3d-shape-animator/',
+    baseURL: external || 'http://127.0.0.1:3000/',
     viewport: { width: 1440, height: 900 },
     locale: 'en-US',
     trace: 'retain-on-failure',
@@ -28,7 +28,7 @@ export default defineConfig({
     ? undefined
     : {
         command: 'npm run preview -- --port 3000',
-        url: 'http://127.0.0.1:3000/3d-shape-animator/',
+        url: 'http://127.0.0.1:3000/',
         reuseExistingServer: !process.env.CI,
         timeout: 120000,
       },
