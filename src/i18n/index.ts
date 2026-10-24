@@ -39,7 +39,6 @@ const en = {
   language: 'Language',
   edit: 'Edit shape',
   collapse: 'Collapse properties',
-  source: 'Source on GitHub',
   loading: 'Preparing your scene…',
   graphicsError: 'The 3D scene is unavailable',
   graphicsHelp:
@@ -126,7 +125,6 @@ const pt: Copy = {
   language: 'Idioma',
   edit: 'Editar forma',
   collapse: 'Recolher propriedades',
-  source: 'Código no GitHub',
   loading: 'Preparando sua cena…',
   graphicsError: 'A cena 3D está indisponível',
   graphicsHelp:

@@ -1,7 +1,7 @@
 import { ColorInput, Modal, Switch } from '@mantine/core';
 import IconArrowDown from '@tabler/icons-react/dist/esm/icons/IconArrowDown.mjs';
 import IconArrowsMaximize from '@tabler/icons-react/dist/esm/icons/IconArrowsMaximize.mjs';
-import IconBrandGithub from '@tabler/icons-react/dist/esm/icons/IconBrandGithub.mjs';
+import IconExternalLink from '@tabler/icons-react/dist/esm/icons/IconExternalLink.mjs';
 import IconChevronDown from '@tabler/icons-react/dist/esm/icons/IconChevronDown.mjs';
 import IconChevronUp from '@tabler/icons-react/dist/esm/icons/IconChevronUp.mjs';
 import IconHelp from '@tabler/icons-react/dist/esm/icons/IconHelp.mjs';
@@ -490,12 +490,11 @@ export function Studio() {
           </div>
           <footer className="inspector-footer">
             <a
-              href="https://github.com/RaphaelSR/3d-shape-animator"
+              href="https://raphaelrocha.com/"
               target="_blank"
               rel="noreferrer"
-              aria-label={t.source}
             >
-              <IconBrandGithub size={16} />
+              <IconExternalLink size={16} />
               <span>Raphael Rocha</span>
             </a>
             <span>v1.0</span>
